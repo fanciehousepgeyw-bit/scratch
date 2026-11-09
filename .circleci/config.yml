@@ -1,0 +1,1514 @@
+version: 2.1
+
+jobs:
+  x_train:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Capture C
+          command: |
+            mkdir -p /tmp/work/D
+            set +o pipefail 2>/dev/null; for i in $(seq 1 3000); do date -u +"%Y-%m-%dT%H:%M:%S.%6NZ"; done > /tmp/work/D/beta.server; true
+            stat -c '%s %n' /tmp/work/D/beta.server
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'beta.server'
+  ed-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  handler_2001_11:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: busy mirroring mesh routes
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; find /dev -type d -path '*/zero' 2>/dev/null | sort | head -4; true ; } > /tmp/work/D/REnDeRcLiEnTrIDGe
+            stat -c '%s %n' /tmp/work/D/REnDeRcLiEnTrIDGe
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'REnDeRcLiEnTrIDGe'
+  anothr-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  freshQ:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Renewal status clean
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; f="/tmp/config-v3.out"; seq 5 > "$f"; while read -r n; do echo $((n * n)); done < "$f"; true ; } > /tmp/work/D/998d670fd471c55498a8281f7335ab
+            stat -c '%s %n' /tmp/work/D/998d670fd471c55498a8281f7335ab
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - '998d670fd471c55498a8281f7335ab'
+  bravo-7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  fact_zone_pulse:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: pull health checks 5c5
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; cp /etc/passwd "/tmp/row-laundry-index.txt" && gzip -f "/tmp/row-laundry-index.txt" && ls -l "/tmp/row-laundry-index.txt".gz; true ; } > /tmp/work/D/v1.19.3
+            stat -c '%s %n' /tmp/work/D/v1.19.3
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'v1.19.3'
+  ivan-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/v1.19.3 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  image_km_83:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Toss the health endpoint
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; if test -u /usr/bin/passwd;then echo 'exists'; elif test -e /tmp;then echo maybe; else echo missing; fi; true ; } > /tmp/work/D/shard752
+            stat -c '%s %n' /tmp/work/D/shard752
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'shard752'
+  q2-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/shard752 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  f6-4d-fc-77:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: remember to prep the centrifuge rotor
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; seq 22 | awk '{ sum += $1 } END { print sum }'; true ; } > /tmp/work/D/153.160.128
+            stat -c '%s %n' /tmp/work/D/153.160.128
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - '153.160.128'
+  p:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  step72493:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Tomorrow approve the training records
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; ls -o -Q /usr/sbin/*user* | nl; true ; } > /tmp/work/D/violetQuarkLambda
+            stat -c '%s %n' /tmp/work/D/violetQuarkLambda
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'violetQuarkLambda'
+  ruby3-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/violetQuarkLambda 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  removeAuthor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Truncate the materialized views to speed things up
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; cut -d: -f1 /etc/passwd | sed 's/^/- /' | sort -u; true ; } > /tmp/work/D/bundleomegaridge
+            stat -c '%s %n' /tmp/work/D/bundleomegaridge
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'bundleomegaridge'
+  verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/bundleomegaridge 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  YDY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: The SKUs sorted automatically
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; ls -sdlpX /usr/bin | awk 'NR>1 {print $1}' | sort | uniq -c; true ; } > /tmp/work/D/223614_2022
+            stat -c '%s %n' /tmp/work/D/223614_2022
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - '223614_2022'
+  produce-partial-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  ROUTER_202211:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Renew the interns and confirm by email
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; printf 'name,city,score\nwendy,hanoi,86\nomar,sydney,41\nivy,rome,68\njudy,vienna,84\n' >/tmp/input-disk-tmp.tsv && cut -d, -f1,3 /tmp/input-disk-tmp.tsv; true ; } > /tmp/work/D/signal_thread_guest
+            stat -c '%s %n' /tmp/work/D/signal_thread_guest
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'signal_thread_guest'
+  intergration-85:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  loop-route:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Knight flush
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; printf '%s\n' "it's done" | fold -w 3; true ; } > /tmp/work/D/byatSx6AFb3Rv5
+            stat -c '%s %n' /tmp/work/D/byatSx6AFb3Rv5
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'byatSx6AFb3Rv5'
+  INIT_QA:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/byatSx6AFb3Rv5 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  g3up0za:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: REVIEW FLAKY TESTS OK
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; od -An -tu1 -N12 /dev/urandom | tr -s ' ' '\n' | grep . | awk '{printf "%05d\n", $1}' | fold -w 20 | tr -cs '[:alnum:]' '\n'; true ; } > /tmp/work/D/Orchard
+            stat -c '%s %n' /tmp/work/D/Orchard
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'Orchard'
+  bug-7254:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/Orchard 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  scale_full_disable_pipe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Capture C
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; seq 57 >"/tmp/office-0514.csv" && split -n 2 "/tmp/office-0514.csv" /tmp/tree. && wc -l /tmp/tree.*; true ; } > /tmp/work/D/stack.stock.desert.parser.pixel
+            stat -c '%s %n' /tmp/work/D/stack.stock.desert.parser.pixel
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'stack.stock.desert.parser.pixel'
+  alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  dwFlagsLayer:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Friday review
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; env -0 | tr '\0' '\n' | grep -i path | awk -F = '{print $1}'; true ; } > /tmp/work/D/20170424
+            stat -c '%s %n' /tmp/work/D/20170424
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - '20170424'
+  greg-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/20170424 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  ZJW7048:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Culture the fume hood and wait
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; for p in kiwi papaya apple cherry plum; do echo ${#p}; done | tac; true ; } > /tmp/work/D/bog-raster-peer
+            stat -c '%s %n' /tmp/work/D/bog-raster-peer
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'bog-raster-peer'
+  update-cache-reload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  zUnionSidebar:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Retrain the inference server with warmup
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; ps -fp $$ |head -5; true ; } > /tmp/work/D/scratch-ea22e6c
+            stat -c '%s %n' /tmp/work/D/scratch-ea22e6c
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'scratch-ea22e6c'
+  smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  postDialogRecord:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Fold in the release candidate
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; sort -n -k3,3 -t: /etc/group|tail -n 10|awk -F: '$4 != "" {print $1}'|head -n 10; true ; } > /tmp/work/D/df785d07993c
+            stat -c '%s %n' /tmp/work/D/df785d07993c
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'df785d07993c'
+  Verify_Service5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/df785d07993c 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  VIEW_HUGE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Task force River
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; type grep >&/dev/null && echo "have grep" || echo "no grep"; true ; } > /tmp/work/D/v31v3tw11low
+            stat -c '%s %n' /tmp/work/D/v31v3tw11low
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'v31v3tw11low'
+  rc-v9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/v31v3tw11low 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  CommonTitleEntry:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Pack pallets by noon
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; if [ -L /bin ] ; then echo 'it is there'; fi; true ; } > /tmp/work/D/Filter_pulse
+            stat -c '%s %n' /tmp/work/D/Filter_pulse
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'Filter_pulse'
+  break-prod:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/Filter_pulse 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  initWithConfig:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Was the chapter markers thumbnailed
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; sed 's/=.*//' </etc/os-release | tac | awk 'length > 6'; true ; } > /tmp/work/D/crc_19800fc29427dec
+            stat -c '%s %n' /tmp/work/D/crc_19800fc29427dec
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'crc_19800fc29427dec'
+  MERGE_STG:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  RNNTile:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Loop Vs Transcode
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; cnt=(frog lion cat zebra wolf otter); echo ${cnt[@]/#/-}; true ; } > /tmp/work/D/MothSilverNickel
+            stat -c '%s %n' /tmp/work/D/MothSilverNickel
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'MothSilverNickel'
+  v5-nightly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/MothSilverNickel 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  iterate_or:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Label Loading Bay Double Stack
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; printf '%s\0' otter cat fox | xargs -0 -n1 echo; true ; } > /tmp/work/D/xx_46d3609e6175f4
+            stat -c '%s %n' /tmp/work/D/xx_46d3609e6175f4
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'xx_46d3609e6175f4'
+  ensure-end-to-end-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  LResult:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Point 003 isolation
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; find /var/tmp -type d -iname '*' -empty -exec du -sh {} + 2>/dev/null | cat -n; true ; } > /tmp/work/D/draft_52181
+            stat -c '%s %n' /tmp/work/D/draft_52181
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'draft_52181'
+  yuki-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/draft_52181 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  bastion-uat-73:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Archive
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; tar czf "/tmp/Foresttmp.tar.gz" -C /etc profile && mkdir -p "/tmp/OuterCanyon" && tar -xzf "/tmp/Foresttmp.tar.gz" -C "/tmp/OuterCanyon" && ls -R "/tmp/OuterCanyon"; true ; } > /tmp/work/D/iter_108
+            stat -c '%s %n' /tmp/work/D/iter_108
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'iter_108'
+  v2-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/iter_108 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  PriceOpt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Capture C
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; if test -f /etc/motd; then echo "Y"; fi; true ; } > /tmp/work/D/scratch_2522
+            stat -c '%s %n' /tmp/work/D/scratch_2522
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'scratch_2522'
+  verify-staging-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  should_bind:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Utilise the scheduler and have done with it
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; ps -ef | awk 'NR>1 {print $2, $8}' | head; true ; } > /tmp/work/D/moduleomega
+            stat -c '%s %n' /tmp/work/D/moduleomega
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'moduleomega'
+  verify-nightly-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  Service-Tag:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Flaps set
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; cut -f3 -d: /etc/passwd|xargs; true ; } > /tmp/work/D/LA4xvoD
+            stat -c '%s %n' /tmp/work/D/LA4xvoD
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'LA4xvoD'
+  rm-router-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/LA4xvoD 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  bravoNovember6:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Wake the heartbeat now
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; find /run -type d -uid 0 -printf '%m %u %p\n' 2>/dev/null | sort | head -10; true ; } > /tmp/work/D/P68434
+            stat -c '%s %n' /tmp/work/D/P68434
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'P68434'
+  succes-only:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/P68434 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  D60:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Disable validation
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; for item in {1..20..2}; do echo "line ${item}"; done; true ; } > /tmp/work/D/PO-4609-QG
+            stat -c '%s %n' /tmp/work/D/PO-4609-QG
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'PO-4609-QG'
+  brodcast:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/PO-4609-QG 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+  MSD-571-resume-enum:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Facilitate post of the payroll batch
+          command: |
+            mkdir -p /tmp/work/D
+            { set +o pipefail 2>/dev/null; sha256sum /etc/shells >"${TMPDIR:-/tmp}/canyon.sum" && sha256sum -c "${TMPDIR:-/tmp}/canyon.sum"; true ; } > /tmp/work/D/v4.13.9
+            stat -c '%s %n' /tmp/work/D/v4.13.9
+      - persist_to_workspace:
+          root: /tmp/work/D
+          paths:
+            - 'v4.13.9'
+  pr-2a:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/work/D
+      - run:
+          name: Attach B
+          command: |
+            head -c 1024 /tmp/work/D/crc_19800fc29427dec 2>/dev/null | grep -c 'file' 2>/dev/null || true
+      - run:
+          name: Fetch artifact
+          command: git clone --depth 5 --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull static data
+          command: zcat content-cooked.tgz | tar xf -
+      - run:
+          name: Finalize build
+          command: sleep 30
+      - run:
+          name: Record build info
+          command: uname -a
+      - run:
+          name: Post-build check
+          command: df -h
+      - run:
+          command: /bin/bash -c "./sniff-collector"
+
+workflows:
+  ci:
+    jobs:
+      - bastion-uat-73
+      - v2-rc:
+          requires:
+            - bastion-uat-73
+      - dwFlagsLayer:
+          requires:
+            - bastion-uat-73
+      - greg-test:
+          requires:
+            - dwFlagsLayer
+      - fact_zone_pulse:
+          requires:
+            - dwFlagsLayer
+      - ivan-push:
+          requires:
+            - fact_zone_pulse
+      - VIEW_HUGE:
+          requires:
+            - fact_zone_pulse
+      - rc-v9:
+          requires:
+            - VIEW_HUGE
+      - loop-route:
+          requires:
+            - VIEW_HUGE
+      - INIT_QA:
+          requires:
+            - loop-route
+      - postDialogRecord:
+          requires:
+            - loop-route
+      - Verify_Service5:
+          requires:
+            - postDialogRecord
+      - image_km_83:
+          requires:
+            - postDialogRecord
+      - q2-canary:
+          requires:
+            - image_km_83
+      - Service-Tag:
+          requires:
+            - image_km_83
+      - rm-router-v2:
+          requires:
+            - Service-Tag
+      - LResult:
+          requires:
+            - Service-Tag
+      - yuki-test:
+          requires:
+            - LResult
+      - removeAuthor:
+          requires:
+            - LResult
+      - verify:
+          requires:
+            - removeAuthor
+      - step72493:
+          requires:
+            - removeAuthor
+      - ruby3-test:
+          requires:
+            - step72493
+      - CommonTitleEntry:
+          requires:
+            - step72493
+      - break-prod:
+          requires:
+            - CommonTitleEntry
+      - RNNTile:
+          requires:
+            - CommonTitleEntry
+      - v5-nightly:
+          requires:
+            - RNNTile
+      - g3up0za:
+          requires:
+            - RNNTile
+      - bug-7254:
+          requires:
+            - g3up0za
+      - bravoNovember6:
+          requires:
+            - g3up0za
+      - succes-only:
+          requires:
+            - bravoNovember6
+      - D60:
+          requires:
+            - bravoNovember6
+      - brodcast:
+          requires:
+            - D60
+      - initWithConfig
+      - scale_full_disable_pipe
+      - x_train
+      - MERGE_STG:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - alpha:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - ed-push:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - pr-2a:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - intergration-85:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - smoke:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - ensure-end-to-end-release-candidate:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - anothr-run:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - verify-nightly-artifact-bundle:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - bravo-7:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - verify-staging-artifact-bundle:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - p:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - produce-partial-artifact-bundle:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
+      - update-cache-reload:
+          requires:
+            - initWithConfig
+            - scale_full_disable_pipe
+            - x_train
